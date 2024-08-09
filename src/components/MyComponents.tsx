@@ -1,6 +1,5 @@
-import { AllProps, HTMLMotionComponents } from "../ResponsiveComponent/src";
-import ResponsiveComponent from "../ResponsiveComponent/src/ResponsiveComponent";
 
+import { AllProps, HTMLMotionComponents, ResponsiveComponent } from "responsive-component"
 /**
  * @description
  * Este es el component generico por el cual estan hecho la base de todos los componentes.

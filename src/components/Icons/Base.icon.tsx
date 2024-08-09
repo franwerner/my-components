@@ -1,5 +1,5 @@
-import { AllProps } from "@/library/ResponsiveComponent";
-import MyComponents from "../../MyComponents";
+import { AllProps } from "responsive-component";
+import MyComponents from "../MyComponents";
 
 type TBaseIcon = Omit<AllProps<'svg'>, 'as'>;
 

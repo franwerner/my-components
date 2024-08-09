@@ -4,12 +4,12 @@ import Body from "./sections/Body.sections"
 import Footer from "./sections/Footer.sections"
 import Header, { HeaderContext } from "./sections/Header.sections"
 import Title from "./sections/Title.sections"
-import { ISections } from "./sections"
-import MyComponent from "../MyComponents"
-import { HTMLMotionComponents } from "@/library/ResponsiveComponent"
+import { ISections } from "./sections/sections.type"
+import MyComponent from "./MyComponents"
+import { HTMLMotionComponents } from "responsive-component"
 import { createPortal } from "react-dom"
-import isString from "@/library/myHelpers/isString"
-import useKeyboard  from "../hooks/useKeyboard.hook"
+import { isString } from "my-utilities"
+import useKeyboard from "../hooks/useKeyboard.hook"
 
 interface OffCanvasProps {
     backdrop?: BackDropVariant
@@ -33,9 +33,9 @@ const _OffCanvas = ({
 }: OffCanvasProps) => {
 
     const isActive = show && !!keyboard
-    const key = isString(keyboard) ? keyboard : "escape" 
+    const key = isString(keyboard) ? keyboard : "escape"
 
-    useKeyboard({ action: onClose, isActive , key})
+    useKeyboard({ action: onClose, isActive, key })
 
     const side = {
         right: placement === "right" ? "-100%" : "auto",
@@ -50,7 +50,7 @@ const _OffCanvas = ({
             />
             <AnimatePresence>
                 {show &&
-                        <MyComponent
+                    <MyComponent
                         as={as}
                         style={{
                             position: "absolute",
@@ -64,14 +64,14 @@ const _OffCanvas = ({
                             boxShadow: "5px 10px 5px 0px rgba(0,0,0,0.20)",
                         }}
                         initial={{
-                           ...side
+                            ...side
                         }}
                         animate={{
                             right: placement === "right" ? "0%" : "auto",
                             left: placement === "left" ? "0" : "auto",
                         }}
                         exit={{
-                           ...side
+                            ...side
                         }}
                         transition={{ duration: 0.4 }}
                         {...props}

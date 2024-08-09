@@ -1,4 +1,4 @@
-import { AllProps, HTMLMotionComponents } from "@/library/ResponsiveComponent/index";
+import { AllProps, HTMLMotionComponents } from "responsive-component";
 
 export type InitialProps<T extends HTMLMotionComponents> = {
     palette?: string

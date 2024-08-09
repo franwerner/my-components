@@ -1,7 +1,7 @@
-import { AllProps, HTMLMotionComponents } from "@/library/ResponsiveComponent";
-import ResponsiveComponent from "@/library/ResponsiveComponent/ResponsiveComponent";
+
 import { createContext, ReactNode, useContext } from "react";
 import Xmark from "../Icons/Xmark.icon";
+import { AllProps, HTMLMotionComponents, ResponsiveComponent } from "responsive-component";
 
 type THeaderContext = (() => void) | false | undefined
 

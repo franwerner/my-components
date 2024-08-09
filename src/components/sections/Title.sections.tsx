@@ -1,5 +1,5 @@
-import { AllProps, HTMLMotionComponents } from "@/library/ResponsiveComponent"
-import ResponsiveComponent from "@/library/ResponsiveComponent/ResponsiveComponent"
+import { AllProps, HTMLMotionComponents, ResponsiveComponent } from "responsive-component"
+
 
 const Title = <T extends HTMLMotionComponents = "h3">({as = "h3" as T,...props}: AllProps<T>) => {
 

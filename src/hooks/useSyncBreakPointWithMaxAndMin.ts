@@ -1,5 +1,4 @@
-import { BreakPointsKeys, breakPointsKeys } from "@/library/ResponsiveComponent/constant/breakpoints.constant"
-import useSynchronizeBreakPoint, { SyncBreakPointCallback } from "@/library/ResponsiveComponent/hooks/useSyncBreakPoint"
+import { SyncBreakPointCallback,BreakPointsKeys, breakPointsKeys,useSyncBreakPoint  } from "responsive-component"
 import { useCallback } from "react"
 
 /**
@@ -39,7 +38,7 @@ const useSyncBreakPointWithMaxAndMin = ({ breakPoint, maxWidth, minWidth }: IUse
     },[])
 
 
-    const notify = useSynchronizeBreakPoint(listenerExtend)
+    const notify = useSyncBreakPoint(listenerExtend)
 
     return notify
 

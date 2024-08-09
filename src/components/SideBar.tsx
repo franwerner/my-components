@@ -1,18 +1,16 @@
-import isString from "@/library/myHelpers/isString";
-import { BreakPointsKeys, breakPoints } from "@/library/ResponsiveComponent/constant/breakpoints.constant";
-import useMediaQuery from "@/library/ResponsiveComponent/hooks/useMediaQuery.hook";
 import { AnimatePresence } from "framer-motion";
 import useSyncBreakPointWithMaxAndMin from "../hooks/useSyncBreakPointWithMaxAndMin";
-import MyComponent from "../MyComponents";
+import MyComponent from "./MyComponents";
 import OffCanvas, { OffCanvasProps } from "./OffCanvas";
-import { ISections } from "./sections";
+import { ISections } from "./sections/sections.type";
 import Body from "./sections/Body.sections";
 import Footer from "./sections/Footer.sections";
 import Header, { HeaderContext } from "./sections/Header.sections";
 import Title from "./sections/Title.sections";
-import { HTMLMotionComponents } from "@/library/ResponsiveComponent";
 import { ReactNode } from "react";
-import isObject from "@/library/myHelpers/isObject";
+import { breakPoints, BreakPointsKeys, HTMLMotionComponents, useMediaQuery } from "responsive-component";
+import { isObject, isString } from "my-utilities";
+
 
 interface SideBarProps {
     offCanvas?: {
@@ -71,7 +69,7 @@ const _SideBar = ({
                                 flexDirection: "column",
                                 overflowY: "auto",
                                 overflowX: "hidden",
-                                heigth : "100%",
+                                height : "100%",
                                 top: 0,
                                 left: 0,
                                 width: 300,

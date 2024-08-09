@@ -1,5 +1,4 @@
-import { AllProps, HTMLMotionComponents } from "@/library/ResponsiveComponent"
-import ResponsiveComponent from "@/library/ResponsiveComponent/ResponsiveComponent"
+import { AllProps, HTMLMotionComponents, ResponsiveComponent } from "responsive-component"
 
 const Footer = <T extends HTMLMotionComponents = "div">(
     {

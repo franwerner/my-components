@@ -1,7 +1,7 @@
 import { AnimatePresence } from "framer-motion";
 import { InitialProps } from "..";
-import MyComponent from "../MyComponents";
-import { HTMLMotionComponents } from "@/library/ResponsiveComponent";
+import MyComponent from "./MyComponents";
+import { HTMLMotionComponents } from "responsive-component";
 
 type BackDropVariant = "static" | boolean
 
@@ -13,11 +13,11 @@ type BackdropProps<T extends HTMLMotionComponents> = {
 const Backdrop = <T extends HTMLMotionComponents = "div">({
     type,
     onClose = () => { },
-    initial,
-    animate,
-    style,
-    transition,
-    exit,
+    initial = {},
+    animate = {},
+    style = {},
+    transition = {},
+    exit = {},
     ...props
 }: BackdropProps<T>) => {
 
@@ -33,8 +33,8 @@ const Backdrop = <T extends HTMLMotionComponents = "div">({
                     style={{ position: "fixed", height: "100vh", width: "100vw", right: 0, top: 0, ...style }}
                     transition={{ duration: 0.7, type: "spring", ...transition }}
                     exit={{ scale: [0.7, 0.5, 0],backgroundColor : "#00000070",...exit }}
-                    {...props}
-                />
+                    {...(props as any)}
+                /> 
             }
         </AnimatePresence>
     );
