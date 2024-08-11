@@ -32,7 +32,7 @@ const _SideBar = ({
 }: SideBarProps) => {
 
     const offCanvasActive = offCanvas?.breakpoint
-
+    
     const offCanvasVerification = isString(offCanvasActive) && offCanvasActive in breakPoints
 
     const getBreakpoint = offCanvasVerification && breakPoints[offCanvasActive].maxWidth

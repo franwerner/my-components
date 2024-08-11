@@ -19,7 +19,6 @@ const useSyncBreakPointWithMaxAndMin = ({ breakPoint, maxWidth, minWidth }: IUse
 
         if (!breakPoint || !current) return
 
-
         if (maxWidth && minWidth) {
             if (current === breakPoint) setNotify(breakPoint)
             else if (cache === breakPoint) setNotify(false)
