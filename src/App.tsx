@@ -1,6 +1,4 @@
-import { BreakPointObserver } from "responsive-component"
 import SideBar from "./components/SideBar"
-import { useEffect } from "react"
 
 
 function App() {
