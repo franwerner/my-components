@@ -1,19 +1,13 @@
-import SideBar from "./components/SideBar"
+import { ResponsiveComponent } from "responsive-component"
 
 
 function App() {
 
   return (
     <>
-    <SideBar offCanvas={{
-      show : true,
-      breakpoint : "md",
-      onClose : () => {}
-    }}>
-      <SideBar.Header >
-        <SideBar.Title>GG</SideBar.Title>
-      </SideBar.Header>
-    </SideBar>
+      <ResponsiveComponent>
+        asdad
+      </ResponsiveComponent>
     </>
   )
 }
