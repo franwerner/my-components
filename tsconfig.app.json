@@ -5,6 +5,7 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "composite": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -22,7 +23,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
+      "responsive-component" : ["../responsive-component/lib/index.ts"],
+      "my-utilities" : ["../my-utilities/lib/index.ts"]
     }
   },
-  "include": ["src","lib"]
+  "include": ["src","lib",".."]
 }
