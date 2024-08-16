@@ -1,13 +1,10 @@
 import { ResponsiveComponent } from "responsive-component"
 
-
 function App() {
 
   return (
     <>
-      <ResponsiveComponent>
-        asdad
-      </ResponsiveComponent>
+    <ResponsiveComponent>Hola1</ResponsiveComponent>
     </>
   )
 }
