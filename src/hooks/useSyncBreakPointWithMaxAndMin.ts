@@ -7,11 +7,13 @@ import { useCallback } from "react"
  * basandonos en los maximon y minimos definidos.
  */
 
+
 interface IUseSynchronizeBreakpoint {
     maxWidth?: boolean,
     minWidth?: boolean,
     breakPoint?: BreakPointsKeys | false
 }
+
 
 const useSyncBreakPointWithMaxAndMin = ({ breakPoint, maxWidth, minWidth }: IUseSynchronizeBreakpoint) => {
 
