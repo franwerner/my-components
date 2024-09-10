@@ -1,5 +1,4 @@
 import { AnimatePresence } from "framer-motion";
-import useSyncBreakPointWithMaxAndMin from "../hooks/useSyncBreakPointWithMaxAndMin";
 import MyComponent from "./MyComponents";
 import OffCanvas, { OffCanvasProps } from "./OffCanvas";
 import { ISections } from "./sections/sections.type";
@@ -8,13 +7,13 @@ import Footer from "./sections/Footer.sections";
 import Header, { HeaderContext } from "./sections/Header.sections";
 import Title from "./sections/Title.sections";
 import { ReactNode } from "react";
-import { breakPoints, BreakPointsKeys, HTMLMotionComponents, useMediaQuery } from "responsive-component";
+import { breakPoints, BreakPointsKeys, calculateBreakPointsForWidth, HTMLMotionComponents, useMediaQuery, useSelectorBreakPoint } from "responsive-component";
 import { isObject, isString } from "my-utilities";
 
 
 interface SideBarProps {
     offCanvas?: {
-        breakpoint?: BreakPointsKeys 
+        breakpoint?: BreakPointsKeys
     } & OffCanvasProps
     onSmallmode?: () => void
     smallMode?: boolean
@@ -32,18 +31,21 @@ const _SideBar = ({
 }: SideBarProps) => {
 
     const offCanvasActive = offCanvas?.breakpoint
-    
+
     const offCanvasVerification = isString(offCanvasActive) && offCanvasActive in breakPoints
 
     const getBreakpoint = offCanvasVerification && breakPoints[offCanvasActive].maxWidth
 
-    const lastestBreakPoint = useSyncBreakPointWithMaxAndMin({ breakPoint: offCanvasVerification && offCanvasActive, maxWidth: true })
-
-    const isSync = lastestBreakPoint === offCanvasActive
+    console.log()
+    const syncBreakPoint = useSelectorBreakPoint((store) => {
+        // const bk = store.breakPoint
+        // const width = bk ? breakPoints[bk].maxWidth : 0
+        // return Object.keys(calculateBreakPointsForWidth({ activeBreakpoints : [], responsiveConfig, width }))
+    })
 
     const mediaQuery = useMediaQuery({ sideBar: { maxWidth: getBreakpoint } })
 
-    const IsModeoffCanvas = (isSync || mediaQuery.sideBar.matches || !offCanvasActive)
+    const IsModeoffCanvas = (!!syncBreakPoint || mediaQuery.sideBar.matches)
 
     const isSmallMode = smallMode ? { width: 150 } : {}
 
@@ -52,7 +54,7 @@ const _SideBar = ({
             <OffCanvas
                 children={children}
                 {...(isObject(offCanvas) ? offCanvas : {})}
-                show = {offCanvas.show && IsModeoffCanvas}
+                show={offCanvas.show && IsModeoffCanvas}
                 {...props}
             />
             <AnimatePresence>
@@ -69,7 +71,7 @@ const _SideBar = ({
                                 flexDirection: "column",
                                 overflowY: "auto",
                                 overflowX: "hidden",
-                                height : "100%",
+                                height: "100%",
                                 top: 0,
                                 left: 0,
                                 width: 300,

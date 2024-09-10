@@ -6,7 +6,7 @@ import Header, { HeaderContext } from "./sections/Header.sections"
 import Title from "./sections/Title.sections"
 import { ISections } from "./sections/sections.type"
 import MyComponent from "./MyComponents"
-import { HTMLMotionComponents } from "responsive-component"
+import { createPortalInResizeWindow, HTMLMotionComponents } from "responsive-component"
 import { createPortal } from "react-dom"
 import { isString } from "my-utilities"
 import useKeyboard from "../hooks/useKeyboard.hook"
@@ -42,7 +42,7 @@ const _OffCanvas = ({
         left: placement === "left" ? "-100%" : "auto"
     }
 
-    return createPortal(
+    return createPortalInResizeWindow(
         <HeaderContext.Provider value={onClose}>
             <Backdrop
                 onClose={onClose}
@@ -81,8 +81,6 @@ const _OffCanvas = ({
                 }
             </AnimatePresence>
         </HeaderContext.Provider >
-        ,
-        document.body
     )
 }
 

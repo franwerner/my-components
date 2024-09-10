@@ -1,11 +1,4 @@
-type Palette = {
-    [key: string]: {
-        [shade: string]: string;
-    }
-};
-
-
-const palette:Palette = {
+const palette = {
     primary: {
         '50': '#edefff',
         '100': '#dee3ff',
@@ -44,11 +37,9 @@ const palette:Palette = {
         '800': '#99182c',
         '900': '#83182c',
         '950': '#490812',
-    }
+    },
 }
 
-type TPalette = keyof typeof palette
 
 
-export type { TPalette }
-export default palette
+export default palette 

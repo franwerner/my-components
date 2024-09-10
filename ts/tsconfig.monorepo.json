@@ -29,8 +29,6 @@
         }
       },
       "include": [
-        "../src",
-        "../../my-utilities",
-        "../../responsive-component"
+        "../src"
       ]
 }
