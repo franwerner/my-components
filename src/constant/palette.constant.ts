@@ -1,4 +1,6 @@
-const palette = {
+import { Palette } from "@my-components/types/theme.type"
+
+const palette:Palette = {
     primary: {
         '50': '#edefff',
         '100': '#dee3ff',
@@ -39,7 +41,6 @@ const palette = {
         '950': '#490812',
     },
 }
-
 
 
 export default palette 

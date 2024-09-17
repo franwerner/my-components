@@ -1,14 +1,14 @@
 import { AnimatePresence } from "framer-motion";
+import { isObject, isString } from "my-utilities";
+import { ReactNode } from "react";
+import { BreakPointsKeys, HTMLMotionComponents, useMediaQuery } from "responsive-component";
 import MyComponent from "./MyComponents";
 import OffCanvas, { OffCanvasProps } from "./OffCanvas";
-import { ISections } from "./sections/sections.type";
 import Body from "./sections/Body.sections";
 import Footer from "./sections/Footer.sections";
 import Header, { HeaderContext } from "./sections/Header.sections";
+import { ISections } from "./sections/sections.type";
 import Title from "./sections/Title.sections";
-import { ReactNode } from "react";
-import { breakPoints, BreakPointsKeys, calculateBreakPointsForWidth, HTMLMotionComponents, useMediaQuery, useSelectorBreakPoint } from "responsive-component";
-import { isObject, isString } from "my-utilities";
 
 
 interface SideBarProps {
@@ -36,16 +36,9 @@ const _SideBar = ({
 
     const getBreakpoint = offCanvasVerification && breakPoints[offCanvasActive].maxWidth
 
-    console.log()
-    const syncBreakPoint = useSelectorBreakPoint((store) => {
-        // const bk = store.breakPoint
-        // const width = bk ? breakPoints[bk].maxWidth : 0
-        // return Object.keys(calculateBreakPointsForWidth({ activeBreakpoints : [], responsiveConfig, width }))
-    })
-
     const mediaQuery = useMediaQuery({ sideBar: { maxWidth: getBreakpoint } })
 
-    const IsModeoffCanvas = (!!syncBreakPoint || mediaQuery.sideBar.matches)
+    const IsModeoffCanvas = (mediaQuery.sideBar.matches)
 
     const isSmallMode = smallMode ? { width: 150 } : {}
 
