@@ -1,4 +1,4 @@
-import { Theme } from "@my-components/types/theme.type";
+import { Theme } from "@/types/theme.type";
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
 const themeDefault: Theme = {

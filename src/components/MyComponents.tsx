@@ -1,5 +1,6 @@
 
-import { AllProps, HTMLMotionComponents, ResponsiveComponent } from "responsive-component"
+import { ResponsiveComponent } from "responsive-component"
+import { AllProps, HTMLMotionComponents } from "responsive-component/types"
 
 const breakPointDefault = {
     "xs": 440,

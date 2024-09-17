@@ -1,4 +1,4 @@
-import { getTheme } from "@my-components/context/Theme.context";
+import { getTheme } from "@/context/Theme.context";
 import { HTMLMotionComponents } from "responsive-component";
 import MyComponents from "../MyComponents";
 import { InitialProps } from "../..";

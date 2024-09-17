@@ -2,38 +2,19 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import path from "path"
 import dts from 'vite-plugin-dts'
+export default defineConfig(() => {
 
-const loadAliasConfig = async () => {
-  let load = {}
-  try {
-    const module = await import("../../alias.config.js")
-    load = module.default
-  } catch (error) {
-
-  }
-  return load
-}
-
-
-export default defineConfig(async({ command }) => {
-
-  const alias = await loadAliasConfig()
-
-  const isBuild = command == "build" ?
-    {
-      "@my-components": path.resolve(__dirname, "src")
-    }
-    : alias
   return {
     plugins: [
       react(),
       dts({
-        tsconfigPath: "./ts/tsconfig.build.json",
         exclude: ["src/App.tsx", "src/main.tsx"]
       }),
     ],
     resolve: {
-      alias: isBuild
+      alias: {
+        "@": path.resolve(__dirname, "src")
+      }
     },
     build: {
       outDir: "dist",

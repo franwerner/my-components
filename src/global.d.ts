@@ -1,5 +1,4 @@
 import { Entries, FromEntries, Keys } from "my-utilities";
-import "responsive-component"
 
 declare global {
   interface ObjectConstructor {
@@ -9,9 +8,5 @@ declare global {
   }
 }
 
-
-declare module 'responsive-component/types' {
-    type Breakpoints = "FDFD";
-}
 
 export {}
