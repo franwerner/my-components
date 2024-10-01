@@ -1,10 +1,15 @@
-import { AllProps, HTMLMotionComponents,ResponsiveComponent } from "responsive-component";
+import { AnimationVariants, HTMLResponsiveComponent, ResponsiveComponent } from "responsive-component";
+import { MyComponentProps } from "../MyComponent";
 
-const Body = <T extends HTMLMotionComponents = "div">(
+const Body = <
+    T extends HTMLResponsiveComponent,
+    K extends AnimationVariants<any, C>,
+    C = undefined,
+>(
     {
         style,
         ...props
-    }: AllProps<T>) => {
+    }: MyComponentProps<T,K,C>) => {
 
     return (
         <ResponsiveComponent

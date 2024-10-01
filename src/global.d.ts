@@ -6,7 +6,9 @@ declare global {
     entries<T>(obj: T): Entries<T>;
     keys<T>(obj: T): Keys<T>;
   }
+
 }
 
 
-export {}
+
+export { }

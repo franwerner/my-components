@@ -1,15 +1,15 @@
-import MyComponents from "./components/MyComponents"
-import {testAAA} from "responsive-component"
+import Button from "./components/buttons/Button"
+import ThemeProvider from "./context/Theme.context"
 
 
 function App() {
 
-  console.log(testAAA)
- 
   return (
-    <>
-    
-    </>
+    <ThemeProvider>
+      <Button responsive = {{
+        
+      }} paletteColor="primary">asdasdasdasdsad</Button>
+    </ThemeProvider>
   )
 }
 

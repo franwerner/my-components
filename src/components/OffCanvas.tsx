@@ -5,25 +5,24 @@ import Footer from "./sections/Footer.sections"
 import Header, { HeaderContext } from "./sections/Header.sections"
 import Title from "./sections/Title.sections"
 import { ISections } from "./sections/sections.type"
-import MyComponent from "./MyComponents"
-import { createPortalInResizeWindow, HTMLMotionComponents } from "responsive-component"
-import { createPortal } from "react-dom"
+import MyComponent from "./MyComponent"
 import { isString } from "my-utilities"
 import useKeyboard from "../hooks/useKeyboard.hook"
+import { HTMLResponsiveComponent } from "responsive-component"
 
 interface OffCanvasProps {
     backdrop?: BackDropVariant
     show?: boolean
     onClose?: () => void
     keyboard?: boolean | string
-    as?: HTMLMotionComponents,
+    as?: HTMLResponsiveComponent,
     children?: React.ReactNode | string
     placement?: "left" | "right",
 }
 
 const _OffCanvas = ({
     children,
-    as,
+    as = "aside",
     backdrop = true,
     show,
     onClose,
@@ -42,7 +41,7 @@ const _OffCanvas = ({
         left: placement === "left" ? "-100%" : "auto"
     }
 
-    return createPortalInResizeWindow(
+    return (
         <HeaderContext.Provider value={onClose}>
             <Backdrop
                 onClose={onClose}
@@ -53,6 +52,7 @@ const _OffCanvas = ({
                     <MyComponent
                         as={as}
                         style={{
+                            minWidth: 300,
                             position: "absolute",
                             height: "100vh",
                             display: "flex",
@@ -63,16 +63,12 @@ const _OffCanvas = ({
                             top: 0,
                             boxShadow: "5px 10px 5px 0px rgba(0,0,0,0.20)",
                         }}
-                        initial={{
-                            ...side
-                        }}
+                        initial={side}
                         animate={{
                             right: placement === "right" ? "0%" : "auto",
                             left: placement === "left" ? "0" : "auto",
                         }}
-                        exit={{
-                            ...side
-                        }}
+                        exit={side}
                         transition={{ duration: 0.4 }}
                         {...props}
                     >

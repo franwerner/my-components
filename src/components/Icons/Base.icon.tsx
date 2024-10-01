@@ -1,9 +1,12 @@
-import { AllProps } from "responsive-component";
-import MyComponents from "../MyComponents";
+import { AnimationVariants } from "responsive-component";
+import MyComponents, { MyComponentProps } from "../MyComponent";
 
-type TBaseIcon = Omit<AllProps<'svg'>, 'as'>;
+type BaseIconProps<K extends AnimationVariants<any, C>, C = undefined> = Omit<MyComponentProps<'svg', K, C>, 'as'>;
 
-const BaseIcon = (props: TBaseIcon) => <MyComponents as="svg" {...props} />
+const BaseIcon =<
+    K extends AnimationVariants<any,C>,
+    C = undefined
+> (props: BaseIconProps<K,C>) => <MyComponents as="svg" {...props} />
 
-export type { TBaseIcon }
+export type { BaseIconProps }
 export default BaseIcon

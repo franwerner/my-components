@@ -1,35 +1,33 @@
-import { getTheme } from "@/context/Theme.context";
-import { HTMLMotionComponents } from "responsive-component";
-import MyComponents from "../MyComponents";
-import { InitialProps } from "../..";
+
+import { useTheme } from "@/context/Theme.context";
+import MyComponents from "../MyComponent";
+import { AnimationVariants, HTMLResponsiveComponent } from "responsive-component";
+import { ComponentThemeProps } from "@/index";
 
 
-const Button = <T extends HTMLMotionComponents = "button">({
+const Button = <
+    K extends AnimationVariants<any, C>,
+    T extends HTMLResponsiveComponent = "button",
+    C = undefined
+>({
     as = ("button" as T),
-    style,
-    animate,
-    initial,
-    whileTap,
-    whileFocus,
-    palette:paletteInput = "primary",
+    paletteColor= "primary",
     ...props
-}: InitialProps<T>) => {
+}: ComponentThemeProps<T, K, C>) => {
 
-    const { palette } = getTheme()
+    const { palette } = useTheme()
 
-    const currentPalette = (paletteInput && palette[paletteInput]) || palette["primary"]
+    const currentPalette = (paletteColor && palette[paletteColor]) || palette["primary"]
 
     return (
         <MyComponents
             as={as}
             initial={{
                 padding: 0,
-                ...initial
             }}
             animate={{
                 backgroundColor: currentPalette[600],
                 padding: 12,
-                ...animate
             }}
             style={{
                 color: "#FFF",
@@ -39,18 +37,19 @@ const Button = <T extends HTMLMotionComponents = "button">({
                 cursor: "pointer",
                 border: `1px solid #FFF`,
                 outline: "0px solid #fff",
-                ...style
+                width : "min-content"
+            }}
+            whileHover = {{
+                backgroundColor: currentPalette[500]
             }}
             whileTap={{
                 scale: 0.9,
                 backgroundColor: currentPalette[500],
                 border: `1px solid ${currentPalette[600]}`,
-                ...whileTap
             }}
             whileFocus={{
                 transition: { duration: 0.1, type: "spring" },
                 outline: `4px solid ${currentPalette[300]}`,
-                ...whileFocus,
             }}
             {...props as any}
         />

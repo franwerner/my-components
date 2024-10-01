@@ -1,31 +1,36 @@
 
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, useContext } from "react";
+import { AnimationVariants, HTMLResponsiveComponent } from "responsive-component";
 import Xmark from "../Icons/Xmark.icon";
-import { AllProps, HTMLMotionComponents, ResponsiveComponent } from "responsive-component";
+import MyComponent, { MyComponentProps } from "../MyComponent";
 
 type THeaderContext = (() => void) | false | undefined
 
-type HeaderProps<T extends HTMLMotionComponents> = {
+type HeaderProps<
+    K extends AnimationVariants<any, C>,
+    T extends HTMLResponsiveComponent,
+    C = undefined,
+> = {
     closeButton?: boolean
-    iconCloseButton?: <T>(props: T) => ReactNode
-} & AllProps<T>
+} & MyComponentProps<T, K, C>
 
 const HeaderContext = createContext<THeaderContext>(undefined)
 
-const Header = <T extends HTMLMotionComponents = "div">({
+const Header = <
+    K extends AnimationVariants<any, C>,
+    T extends HTMLResponsiveComponent,
+    C = undefined,
+>({
     children,
     closeButton = true,
-    iconCloseButton: IconCloseButton,
     style,
     ...props
-}: HeaderProps<T>) => {
-    
+}: HeaderProps<K, T, C>) => {
+
     const onClose = useContext(HeaderContext)
 
-    const verification = typeof onClose === "function" && closeButton
-
     return (
-        <ResponsiveComponent
+        <MyComponent
             style={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -38,11 +43,11 @@ const Header = <T extends HTMLMotionComponents = "div">({
             {...props as any}
         >
             {children}
-            {verification && (IconCloseButton ? <IconCloseButton onClick={onClose} /> : <Xmark onClick={onClose} />)}
-        </ResponsiveComponent>
+            {closeButton && <Xmark onClick={onClose} />}
+        </MyComponent>
     );
 };
 
-export { HeaderContext }
-export type { HeaderProps }
+export { HeaderContext };
+export type { HeaderProps };
 export default Header

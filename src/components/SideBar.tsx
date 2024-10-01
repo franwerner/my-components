@@ -1,23 +1,24 @@
+import { useTheme } from "@/context/Theme.context";
 import { AnimatePresence } from "framer-motion";
 import { isObject, isString } from "my-utilities";
 import { ReactNode } from "react";
-import { BreakPointsKeys, HTMLMotionComponents, useMediaQuery } from "responsive-component";
-import MyComponent from "./MyComponents";
+import { HTMLResponsiveComponent, useMediaQuery } from "responsive-component";
+import MyComponent from "./MyComponent";
 import OffCanvas, { OffCanvasProps } from "./OffCanvas";
 import Body from "./sections/Body.sections";
 import Footer from "./sections/Footer.sections";
 import Header, { HeaderContext } from "./sections/Header.sections";
 import { ISections } from "./sections/sections.type";
 import Title from "./sections/Title.sections";
-
+import { Breakpoints } from "@/theme/breakpoints.theme";
 
 interface SideBarProps {
     offCanvas?: {
-        breakpoint?: BreakPointsKeys
+        breakpoint?: keyof Breakpoints
     } & OffCanvasProps
     onSmallmode?: () => void
     smallMode?: boolean
-    as?: HTMLMotionComponents
+    as?: HTMLResponsiveComponent
     children?: ReactNode
 }
 
@@ -30,11 +31,12 @@ const _SideBar = ({
     ...props
 }: SideBarProps) => {
 
+    const { breakpoints } = useTheme()
     const offCanvasActive = offCanvas?.breakpoint
 
-    const offCanvasVerification = isString(offCanvasActive) && offCanvasActive in breakPoints
+    const offCanvasVerification = isString(offCanvasActive) && offCanvasActive in breakpoints
 
-    const getBreakpoint = offCanvasVerification && breakPoints[offCanvasActive].maxWidth
+    const getBreakpoint = offCanvasVerification && breakpoints[offCanvasActive].maxWidth
 
     const mediaQuery = useMediaQuery({ sideBar: { maxWidth: getBreakpoint } })
 
@@ -57,7 +59,6 @@ const _SideBar = ({
                         <MyComponent
                             as={as}
                             animate={{ x: 0, ...isSmallMode }}
-                            exit={{ x: -300, zIndex: -1 }}
                             transition={{ duration: 0.2 }}
                             style={{
                                 display: "flex",

@@ -1,16 +1,21 @@
-import { AllProps, HTMLMotionComponents, ResponsiveComponent } from "responsive-component"
+import { AnimationVariants, HTMLResponsiveComponent, ResponsiveComponent } from "responsive-component"
+import { MyComponentProps } from "../MyComponent"
 
-const Footer = <T extends HTMLMotionComponents = "div">(
+const Footer = <
+    T extends HTMLResponsiveComponent,
+    K extends AnimationVariants<any, C>,
+    C = undefined,
+>(
     {
         style,
         ...props
-    }: AllProps<T>) => {
+    }: MyComponentProps<T, K, C>) => {
 
     return (
         <ResponsiveComponent
             style={{
                 borderTop: "2px solid #d1d1d1",
-                padding : 30,
+                padding: 30,
                 ...style
             }}
             {...props as any}

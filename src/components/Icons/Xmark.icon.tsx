@@ -1,24 +1,26 @@
 
-import BaseIcon, { TBaseIcon } from "./Base.icon"
+import { AnimationVariants } from "responsive-component"
+import BaseIcon, { BaseIconProps } from "./Base.icon"
 
-const Xmark = ({
-    style,
-    whileHover,
-    whileTap,
-    ...props
-}: TBaseIcon) => {
+const Xmark = <
+    K extends AnimationVariants<any, C>,
+    C = undefined
+>
+    ({
+        ...props
+    }: BaseIconProps<K, C>) => {
 
     return (
         <BaseIcon
-            whileHover={{ scale: 1, transition: { duration: 0.2 }, ...whileHover }}
-            whileTap={{ outline: 0, scale: 0.9, ...whileTap }}
+            whileHover={{ scale: 1, transition: { duration: 0.2 } }}
+            whileTap={{ outline: 0, scale: 0.9 }}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={2}
             height={25}
             width={30}
-            style={{ cursor: "pointer", ...style }}
+            style={{ cursor: "pointer" }}
             stroke="currentColor"
             {...props}
         >
